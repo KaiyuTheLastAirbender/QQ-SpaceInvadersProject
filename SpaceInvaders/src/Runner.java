@@ -24,6 +24,13 @@ import java.util.Random;
 		random = new Random();
 		this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
 		this.setBackground(Color.black);
+	}
+		public void paintComponent(Graphics g) {
+			super.paintComponent(g);
+			draw(g);
+		}
+		public void draw(Graphics g) {
+			
 		
 
 	
