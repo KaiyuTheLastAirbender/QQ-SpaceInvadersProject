@@ -1,3 +1,4 @@
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -7,8 +8,7 @@ import java.awt.geom.AffineTransform;
 import java.net.URL;
 
 public class Background{
-	//add location attributes
-	private int x,y; //position of the bird
+	private int x,y; 
 	private Image img; 	
 	private AffineTransform tx;
 
@@ -18,8 +18,7 @@ public class Background{
 		this.y =x;
 		
 		tx = AffineTransform.getTranslateInstance(x, y);
-		init(0, 0); 				//initialize the location of the image
-									//use your variables
+		init(0, 0); 				
 		tx.scale(1.7, 2);
 	}
 	
@@ -29,7 +28,6 @@ public class Background{
 	}
 	
 	public void paint(Graphics g) {
-		//these are the 2 lines of code needed draw an image on the screen
 		Graphics2D g2 = (Graphics2D) g;
 		g2.drawImage(img, tx, null);
 		
