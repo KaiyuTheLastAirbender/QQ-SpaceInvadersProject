@@ -48,7 +48,16 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		f.setVisible(true);
 	}
 	
-
+/*87 = w
+83 = s
+65 = a
+68 = d
+37 = left
+39 = right
+38 = up
+40 = down
+32 = space
+*/
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		// TODO Auto-generated method stub
