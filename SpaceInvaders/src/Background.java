@@ -1,3 +1,4 @@
+
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -13,7 +14,7 @@ public class Background{
 	private AffineTransform tx;
 
 	public Background(int x, int y) {
-		img = getImage("/imgs/black.png"); //load the image for Tree.
+		img = getImage("/imgs/Background.png"); //load the image for Tree.
 		this.x = y;
 		this.y =x;
 		
