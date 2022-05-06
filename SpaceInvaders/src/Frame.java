@@ -16,7 +16,11 @@ import javax.swing.Timer;
 
 public class Frame extends JPanel implements ActionListener, MouseListener, KeyListener {
 //	Duck d = new Duck();
-//	Background bg = new Background(0, 0);
+	Background b = new Background();
+	JFrame frame;
+	JButton button;
+	Ship s = new Ship();
+	
 //	Ghostthing w = new Ghostthing();
 //	//Crosshair CH = new Crosshair();
 	
@@ -29,6 +33,12 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 //		//CH.paint(g);
 //	}
 //	
+	
+	public void paint(Graphics g) {
+		super.paintComponent(g);
+		b.paint(g);
+	}
+	
 	public static void main(String[] arg) {
 		Frame f = new Frame();
 	}
@@ -38,7 +48,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		f.setSize(new Dimension(900, 600));
 		f.setBackground(Color.blue);
 		f.add(this);
-		f.setResizable(false);
+		f.setResizable(true);
 		f.setLayout(new GridLayout(1,2));
 		f.addMouseListener(this);
 		f.addKeyListener(this);
@@ -58,6 +68,12 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 40 = down
 32 = space
 */
+	
+	public void setImage() {
+		
+	}
+	
+	
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		// TODO Auto-generated method stub
