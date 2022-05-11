@@ -7,77 +7,63 @@ import java.net.URL;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class Ship{
-	
-	private Image ship;
+public class Alien {
+
+	private Image alien;
 	private AffineTransform tx;
-	public int x, y, vx=0;
+	public int ax, ay, avx=0;
 	
-	public Ship(int x, int y) {
+	public Alien(int x, int y) {
+		ax=x;
+		ay=y;
 		
-		this.x=x;
-		this.y=y;
-		
-		ship = getImage("/imgs/Ship.png");
+		alien = getImage("imgs/Blue.png");
 		
 		tx = AffineTransform.getTranslateInstance(x, y);
 		init(x, y); 
+		
 	}
 	
-	
-//	public void left() {
-//		vx=-1;
-//		x+=vx;
-//	}
-//	
-//	public void right() {
-//		vx=1;
-//		x+=vx;
-//	}
-//	
 	public void changePicture(String newFileName) {
-		ship = getImage(newFileName);
-		init(x, y);
+		alien = getImage(newFileName);
+		init(ax, ay);
 	}
 	
 	public void paint(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
-		g2.drawImage(ship, tx, null);
-		
-		left();
-		
-		right();
-		
-		if(x<=-50) {
-			x=-50;
-		}
-		if(x>=768) {
-			x=768;
-		}
+		g2.drawImage(alien, tx, null);
 		
 		
-	}
-	//update the picture variable location
-	private void update() {
+//		while(true){
+//			ax+=10;
+//			ax-=10;
+//		}
 		
-		x+=vx;
-		
-		tx.setToTranslation(x, y);
-		tx.scale(1, 1);
 	}
 	
-	public void left() {
-		x-=10;
-		y=400;
-		tx.setToTranslation(x, y);
+	public void moveLeft() {
+		ay=0;
+		for(int i=0; i<10;i++) {
+			ax+=10;
+		}
+		tx.setToTranslation(ax,ay);
 		tx.scale(3.0, 3.0);
-		
 	}
 	
-	public void right() {
-		x+=10;
-		y=400;
-		tx.setToTranslation(x, y);
+	public void moveRight() {
+		ay=0;
+		for(int i=0; i<10; i++) {
+			ax-=10;
+		}
+		tx.setToTranslation(ax, ay);
+		tx.scale(3.0, 3.0);
+	}
+	
+	public void moveDown() {
+		for(int i=0; i<35;i++) {
+			ay-=10;
+		}
+		tx.setToTranslation(ax, ay);
 		tx.scale(3.0, 3.0);
 	}
 	
@@ -85,6 +71,7 @@ public class Ship{
 		tx.setToTranslation(a, b);
 		tx.scale(3.0, 3.0);
 	}
+	
 	
 	private Image getImage(String path) {
 		Image tempImage = null;

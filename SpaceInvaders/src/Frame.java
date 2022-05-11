@@ -8,7 +8,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-
+import java.awt.Graphics2D;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -19,7 +19,9 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	Background b = new Background();
 	JFrame frame;
 	JButton button;
-	Ship s = new Ship();
+	Ship s = new Ship(350,350);
+	Alien a = new Alien(200,0);
+	
 	
 //	Ghostthing w = new Ghostthing();
 //	//Crosshair CH = new Crosshair();
@@ -37,6 +39,21 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	public void paint(Graphics g) {
 		super.paintComponent(g);
 		b.paint(g);
+		s.paint(g);
+		a.paint(g);
+		
+//		while() { make condition for whenever game is running -- when ship has not touched an alien or alien has not crossed the bottom of the screen
+//			for(int i=0; i<number-level; i++) { number will be an int with a TBD value. level will decrease the time by 1 iteration each time.
+//				a.moveLeft();
+//				a.moveRight();
+//			}
+//			a.moveDown();
+//			
+//		}
+	
+		
+		//end screen and death will be here
+        
 	}
 	
 	public static void main(String[] arg) {
@@ -71,7 +88,10 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	
 	public void setImage() {
 		
+		
 	}
+	
+	
 	
 	
 	@Override
@@ -114,7 +134,17 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	public void keyPressed(KeyEvent arg0) {
 		// TODO Auto-generated method stub
 		System.out.println(arg0.getKeyCode());
+		
+		if(arg0.getKeyCode()==37) {
+			s.left();
+		}
+		else if(arg0.getKeyCode()==39) {
+			s.right();
+		}
 	}
+	
+	
+	
 
 	@Override
 	public void keyReleased(KeyEvent arg0) {
