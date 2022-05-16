@@ -8,3 +8,8 @@ The objective of the game is to have your ship to shoot all of the enemy aliens 
 able to hit you from their oncoming attacks and resulting in a game over! Keep track of your score and see if you did better than those before you!
 
 ![image](https://user-images.githubusercontent.com/89215820/168391993-17994aa1-c1ac-48c7-b62a-9c07ac51ff04.png)
+
+(add some gifs)
+
+##Controls
+Move your spaceship with simple key presses: the right arrow key and the left arrow key! The spaceship shoots for you!
