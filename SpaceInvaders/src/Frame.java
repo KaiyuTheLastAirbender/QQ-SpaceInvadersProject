@@ -16,12 +16,18 @@ import javax.swing.Timer;
 
 public class Frame extends JPanel implements ActionListener, MouseListener, KeyListener {
 //	Duck d = new Duck();
+	
+	int score =0;
 	Background b = new Background();
 	JFrame frame;
 	JButton button;
 	Ship s = new Ship(350,350);
 	Alien a = new Alien(200,0);
-	
+	Bullet x = new Bullet(350,350); //when the bullet class is made, this will make sense
+	boolean running = false;
+	int level = 1;
+	Alien[]alienArray = new Alien[15];
+	public boolean lostGame = false;
 	
 //	Ghostthing w = new Ghostthing();
 //	//Crosshair CH = new Crosshair();
@@ -36,25 +42,51 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 //	}
 //	
 	
+	
+	public void startGame() {
+		running=true;
+		
+	}
+	
 	public void paint(Graphics g) {
 		super.paintComponent(g);
 		b.paint(g);
 		s.paint(g);
-		a.paint(g);
+		x.paint(g); //bullet class is the x
 		
-//		while() { make condition for whenever game is running -- when ship has not touched an alien or alien has not crossed the bottom of the screen
-//			for(int i=0; i<number-level; i++) { number will be an int with a TBD value. level will decrease the time by 1 iteration each time.
+//		if(running) {
+//			for(int i=0; i<15; i++) {
+//				alienArray[i].paint(g);
+//				if(alienArray[i].collision(bullet.x,bullet.y)) {
+//					bullet.x=s.x;
+//					bullet.y=s.y;
+//					score++;
+//					System.out.println("SCORE: " + score);
+//				}
+//				
+//				if(alienArray[i].lost()) {
+//					lostGame=true;
+//				
+//			}	
+//			
+//		}
+		
+
+//		if(running) { // make condition for whenever game is running -- when ship has not touched an alien or alien has not crossed the bottom of the scree//n
+//			collision(); //collision is a boolean method - if a bullet collides with an alien
+//			for(int i=0; i<100-level; i++) { number will be an int with a TBD value. level will decrease the time by 1 iteration each time.
 //				a.moveLeft();
 //				a.moveRight();
 //			}
 //			a.moveDown();
-//			
+//			level++;
 //		}
 	
 		
 		//end screen and death will be here
         
 	}
+	
 	
 	public static void main(String[] arg) {
 		Frame f = new Frame();
@@ -73,6 +105,24 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		t.start();
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.setVisible(true);
+		
+		alienArray[0]= new Alien(200,0);
+		alienArray[1]= new Alien(300,0);
+		alienArray[2]= new Alien(400,0);
+		alienArray[3]= new Alien(500,0);
+		alienArray[4]= new Alien(600,0);
+		alienArray[5]= new Alien(200,100);
+		alienArray[6]= new Alien(300,100);
+		alienArray[7]= new Alien(400,100);
+		alienArray[8]= new Alien(500,100);
+		alienArray[9]= new Alien(600,100);
+		alienArray[10]= new Alien(200,200);
+		alienArray[11]= new Alien(300,200);
+		alienArray[12]= new Alien(400,200);
+		alienArray[13]= new Alien(500,200);
+		alienArray[14]= new Alien(600,200);
+		
+		
 	}
 	
 /*87 = w
@@ -91,9 +141,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		
 	}
 	
-	
-	
-	
+
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		// TODO Auto-generated method stub
@@ -127,6 +175,11 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
+		
+		if(running = true) {
+			collision();
+		}
+		
 		repaint();
 	}
 
