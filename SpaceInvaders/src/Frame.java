@@ -22,7 +22,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	JFrame frame;
 	JButton button;
 	Ship s = new Ship(350,350);
-	Alien a = new Alien(200,0);
+	Alien a = new Alien(200,0); // the alien will be less than 200x200 in size, preferably less than or equal to 100x100
 	Bullet x = new Bullet(350,350); //when the bullet class is made, this will make sense
 	boolean running = false;
 	int level = 1;
