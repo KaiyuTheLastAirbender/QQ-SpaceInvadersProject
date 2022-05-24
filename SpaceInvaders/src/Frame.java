@@ -54,33 +54,34 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		s.paint(g);
 		x.paint(g); //bullet class is the x
 		
-//		if(running) {
-//			for(int i=0; i<15; i++) {
-//				alienArray[i].paint(g);
-//				if(alienArray[i].collision(bullet.x,bullet.y)) {
-//					bullet.x=s.x;
-//					bullet.y=s.y;
-//					score++;
-//					System.out.println("SCORE: " + score);
-//				}
-//				
-//				if(alienArray[i].lost()) {
-//					lostGame=true;
-//				
-//			}	
-//			
-//		}
+		if(running) {
+			for(int i=0; i<15; i++) {
+				alienArray[i].paint(g);
+			
+				if(alienArray[i].collision(Bullet.x,Bullet.y)) {
+					Bullet.x=s.x;
+					Bullet.y=s.y;
+					score++;
+					System.out.println("SCORE: " + score);
+				}
+				if(alienArray[i].lost()) {
+					lostGame=true;
+				
+				}	
+			}
+			
+		}
 		
 
-//		if(running) { // make condition for whenever game is running -- when ship has not touched an alien or alien has not crossed the bottom of the scree//n
-//			collision(); //collision is a boolean method - if a bullet collides with an alien
-//			for(int i=0; i<100-level; i++) { number will be an int with a TBD value. level will decrease the time by 1 iteration each time.
-//				a.moveLeft();
-//				a.moveRight();
-//			}
-//			a.moveDown();
-//			level++;
-//		}
+		if(running) { // make condition for whenever game is running -- when ship has not touched an alien or alien has not crossed the bottom of the screen
+			a.collision(Bullet.x,Bullet.y); //collision is a boolean method - if a bullet collides with an alien
+			for(int i=0; i<100-level; i++) { //number will be an int with a TBD value. level will decrease the time by 1 iteration each time.
+				a.moveLeft();
+				a.moveRight();
+			}
+			a.moveDown();
+			level++;
+		}
 	
 		
 		//end screen and death will be here
@@ -177,7 +178,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		// TODO Auto-generated method stub
 		
 		if(running = true) {
-			collision();
+			a.collision(Bullet.x,Bullet.y); //collision is in the alien method
 		}
 		
 		repaint();

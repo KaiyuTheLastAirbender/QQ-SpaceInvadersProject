@@ -49,6 +49,7 @@ public class Alien {
 	
 	public boolean lost() {
 		if(ay>350) {
+			System.out.println("lost");
 			return true;
 		}
 		return false;
