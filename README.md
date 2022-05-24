@@ -13,3 +13,10 @@ able to hit you from their oncoming attacks and resulting in a game over! Keep t
 
 ##Controls
 Move your spaceship with simple key presses: the right arrow key and the left arrow key! The spaceship shoots for you!
+
+##Paint Method
+We have specific images and gifs that are being displayed in the frame such as the aliens, the battleships, and some suprise gifs!
+INSERT IMAGES
+
+##Key Methods
+We have key action presses for movement of the spaceship to control where the space shoots the aliens
