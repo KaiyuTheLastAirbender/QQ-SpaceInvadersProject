@@ -12,10 +12,10 @@ public class Alien {
 
 	private Image alien;
 	private AffineTransform tx;
-	public int ax, ay, avx=0;
-	public int w=45, h=45;
+	public int ax, ay, avx=5, vx=10;
+	public int w=45, h=45; 
 	private Rectangle hitbox;
-	
+	public static boolean right = true;
 	
 	public Alien(int x, int y) {
 		ax=x;
@@ -37,7 +37,32 @@ public class Alien {
 	
 	public void paint(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
+		
+		
+		
 		g2.drawImage(alien, tx, null);
+		g.drawRect(ax+80, ay+80, w, h); //hitbox needs to match what's drawn on the screen for aliens
+		int count=100;
+		if(ax>700 ) {
+			right = false;
+			vx = -10;
+		}
+		
+		if(ax <= 10) {
+			right = true;
+			vx = 10;
+		}
+	//	update();
+	/*	if(ax>0) {
+			ax=1;
+			update();
+		}
+		
+		if(ax>500) {
+			ax=499;
+			vx*=-1;
+		}*/
+		
 		
 		
 //		while(true){
@@ -46,6 +71,11 @@ public class Alien {
 //		}
 		
 	}
+	
+	
+//	public void update{
+//		
+//	}
 	
 	public boolean lost() {
 		if(ay>350) {
@@ -57,9 +87,11 @@ public class Alien {
 	
 	
 	public boolean collision(int x, int y) { //collides with bullet
-		Rectangle bhitbox = new Rectangle(x,y,10,10);
+		
+		Rectangle ahitbox = new Rectangle(x,y,10,10);
 		hitbox = new Rectangle(ax, ay,w,h);
-		if(hitbox.intersects(bhitbox)) {
+		if(hitbox.intersects(ahitbox)) {
+			System.out.println("hit");
 			ax=2000;
 			return true;
 		}
@@ -67,23 +99,12 @@ public class Alien {
 	}
 	
 	
-	public void moveLeft() {
-		ay=0;
-		for(int i=0; i<10;i++) {
-			ax+=10;
-		}
+	public void update() {
+		ax+=vx;
 		tx.setToTranslation(ax,ay);
 		tx.scale(3.0, 3.0);
 	}
 	
-	public void moveRight() {
-		ay=0;
-		for(int i=0; i<10; i++) {
-			ax-=10;
-		}
-		tx.setToTranslation(ax, ay);
-		tx.scale(3.0, 3.0);
-	}
 	
 	public void moveDown() {
 		for(int i=0; i<35;i++) {

@@ -1,13 +1,14 @@
 
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.geom.AffineTransform;
 
 public class Bullet {
-	public static int x; //position of the bullet
-	public static int y;
+	public  int x; //position of the bullet
+	public  int y;
 	public int w=10, h=10;
 
 	private AffineTransform tx;
@@ -30,15 +31,16 @@ public class Bullet {
 		Graphics2D g2 = (Graphics2D) g;
 		
 		//call update to update the actual picture location
+		y-=5;
 		update(x, y);
-		g2.drawRect(x, y, w, h);
-
+	//	g2.drawRect(x, y, w, h);
+		g2.setPaint(new Color(255,255,255));
 		g.fillRect(x, y, w, h);
 
 	}
 	
 	public void moveBullet(int mx, int my) {
-		int smaller, deltax, deltay, incx, incy, minspeed = 7;
+		int smaller, deltax, deltay, incx, incy, minspeed = 5;
 		
 
 		//calculate x (horizontal) distance from the original bullet location to the mouse click
