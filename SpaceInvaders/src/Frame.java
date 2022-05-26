@@ -74,6 +74,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 				for(Bullet b : bullets) {
 					if(alienArray[i].collision(b.x, b.y)){
 						alienArray[i].ax = -5550;
+						alienArray[i].update();
 					}
 				}
 			/*	if (alienArray[i].collision(x.x,x.y)) {
