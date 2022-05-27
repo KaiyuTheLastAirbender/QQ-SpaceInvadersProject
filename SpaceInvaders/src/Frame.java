@@ -20,12 +20,12 @@ import javax.swing.Timer;
 public class Frame extends JPanel implements ActionListener, MouseListener, KeyListener, MouseMotionListener {
 //	Duck d = new Duck();
 
-	int score = 0;
+	int score = 0, winscore=15;
 	Background r = new Background();
 	JFrame frame;
 	JButton button;
 	Ship s = new Ship(350, 350);
-	Alien a = new Alien(200, 0, 5); // the alien will be less than 200x200 in size, preferably less than or equal to
+	Alien a = new Alien(200, 0, 10); // the alien will be less than 200x200 in size, preferably less than or equal to
 									// 100x100
 	int initx = 350, inity = 350;
 	Bullet x = new Bullet(initx, inity); // when the bullet class is made, this will make sense
@@ -74,17 +74,17 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			a.ax+=a.speed;
 		}
 	
-		if (true || running && !lostGame) {
+		if (true || running && !lostGame && score<winscore) {
 			for (int i = 0; i < 15; i++) {
 				alienArray[i].paint(g);
 					
 				for(Bullet b : bullets) {
 					if(alienArray[i].collision(b.x, b.y)){
-						alienArray[i].ax = -5550;
+						alienArray[i].ay = -1000;
 						alienArray[i].update();
 					}
 				}
-			/*	if (alienArray[i].collision(x.x,x.y)) {
+				if (alienArray[i].collision(x.x,x.y)) {
 					x.x = initx;
 					x.y = inity;
 					score++;
@@ -92,7 +92,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 				}
 				if (alienArray[i].lost()) {
 					lostGame = true;
-				}*/
+				}
 				g.setColor(Color.RED);
 				g.setFont(new Font("Stencil", Font.PLAIN, 50));
 				g.drawString("SCORE: " + score, 10, 500);
@@ -110,18 +110,18 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			g.drawString("You Lost!", 300, 300);
 		}
 		
-		
+		moveAliens();
 
-		if (running) { // make condition for whenever game is running -- when ship has not touched an
-						// alien or alien has not crossed the bottom of the screen
-		//	a.collision(x.x, x.y); // collision is a boolean method - if a bullet collides with an alien
-			for (int i = 0; i < 100 - level; i++) { // number will be an int with a TBD value. level will decrease the
-													// time by 1 iteration each time.
-				a.update();
-			}
-			a.moveDown();
-			level++;
-		}
+//		if (running) { // make condition for whenever game is running -- when ship has not touched an
+//						// alien or alien has not crossed the bottom of the screen
+//		//	a.collision(x.x, x.y); // collision is a boolean method - if a bullet collides with an alien
+//			for (int i = 0; i < 100 - level; i++) { // number will be an int with a TBD value. level will decrease the
+//													// time by 1 iteration each time.
+//				a.update();
+//			}
+////			a.moveDown();
+//			level++;
+//		}
 
 		//paint any bullets
 		for(Bullet b: bullets) {
@@ -160,17 +160,19 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			
 			if(alienArray[i].ax>900) {
 				for(int j=0; j<alienArray.length; j++) {
+					a.ax=890;
 					alienArray[j].moveLeft=true;
 					alienArray[j].moveRight=false;
-					alienArray[j].ay+=50;
+					//alienArray[j].ay+=50;
 				}
 			}
 			
 			if(alienArray[i].ax<20) {
 				for(int j=0; j<alienArray.length; j++) {
+					a.ax=30;
 					alienArray[j].moveRight=true;
 					alienArray[j].moveLeft=false;
-					alienArray[j].ay+=50;
+					//alienArray[j].ay+=50;
 				}
 			}
 		}

@@ -47,27 +47,27 @@ public class Alien {
 		
 		
 		g2.drawImage(alien, tx, null);
-		g.drawRect(ax+80, ay+80, w, h); //hitbox needs to match what's drawn on the screen for aliens
+		//g.drawRect(ax+80, ay+80, w, h); //hitbox needs to match what's drawn on the screen for aliens
 		int count=100;
 		if(ax>700 ) {
 			right = false;
 			vx = -10;
 		}
 		
-		if(ax <= 10) {
+		if(ax <= 0) {
 			right = true;
 			vx = 10;
 		}
-	//	update();
-	/*	if(ax>0) {
-			ax=1;
-			update();
-		}
-		
-		if(ax>500) {
-			ax=499;
-			vx*=-1;
-		}*/
+		update();
+//		if(ax>0) {
+//			ax=1;
+//			update();
+//		}
+//		
+//		if(ax>500) {
+//			ax=499;
+//			vx*=-1;
+//		}
 		
 		
 		
@@ -96,11 +96,11 @@ public class Alien {
 	
 	public boolean collision(int x, int y) { //collides with bullet
 		
-		Rectangle ahitbox = new Rectangle(x,y,10,10);
+		Rectangle ahitbox = new Rectangle(x-5,y-5,10,10);
 		hitbox = new Rectangle(ax, ay,w,h);
 		if(hitbox.intersects(ahitbox)) {
 			System.out.println("hit");
-			ax=2000;
+			ay=1000;
 			return true;
 		}
 		return false;
@@ -114,13 +114,13 @@ public class Alien {
 	}
 	
 	
-	public void moveDown() {
-		for(int i=0; i<35;i++) {
-			ay-=10;
-		}
-		tx.setToTranslation(ax, ay);
-		tx.scale(3.0, 3.0);
-	}
+//	public void moveDown() {
+//		for(int i=0; i<35;i++) {
+//			ay-=10;
+//		}
+//		tx.setToTranslation(ax, ay);
+//		tx.scale(3.0, 3.0);
+//	}
 	
 	private void init(double a, double b) {
 		tx.setToTranslation(a, b);
