@@ -25,7 +25,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	JFrame frame;
 	JButton button;
 	Ship s = new Ship(350, 350);
-	Alien a = new Alien(200, 0); // the alien will be less than 200x200 in size, preferably less than or equal to
+	Alien a = new Alien(200, 0, 5); // the alien will be less than 200x200 in size, preferably less than or equal to
 									// 100x100
 	int initx = 350, inity = 350;
 	Bullet x = new Bullet(initx, inity); // when the bullet class is made, this will make sense
@@ -66,6 +66,13 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 //			alienArray[i].moveRight();
 //			
 //		}
+		
+		if(a.moveLeft) {
+			a.ax-=a.speed;
+		}
+		if(a.moveRight) {
+			a.ax+=a.speed;
+		}
 	
 		if (true || running && !lostGame) {
 			for (int i = 0; i < 15; i++) {
@@ -102,6 +109,8 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			g.setFont(new Font("TimesRoman", Font.PLAIN, 50));
 			g.drawString("You Lost!", 300, 300);
 		}
+		
+		
 
 		if (running) { // make condition for whenever game is running -- when ship has not touched an
 						// alien or alien has not crossed the bottom of the screen
@@ -123,6 +132,51 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		// end screen and death will be here
 
 	}
+	
+//	public void moveAliens() {
+//		for(int i=0; i<alienArray.length; i++) {
+//			if(alienArray[i].moveLeft==true) {
+//				alienArray[i].ax-=5;
+//			}
+//			if(alienArray[i].moveRight==true) {
+//				alienArray[i].ax+=5;
+//			}
+//		
+//		}
+//	}
+	
+	public void moveAliens() {
+		for(int i=0; i<alienArray.length; i++) {
+			if(alienArray[i].moveLeft) {
+				alienArray[i].ax-=2;
+				
+			}
+			
+			if(alienArray[i].moveRight) {
+				alienArray[i].ax+=2;
+			}
+			
+			alienArray[i].ax += alienArray[i].speed;
+			
+			if(alienArray[i].ax>900) {
+				for(int j=0; j<alienArray.length; j++) {
+					alienArray[j].moveLeft=true;
+					alienArray[j].moveRight=false;
+					alienArray[j].ay+=50;
+				}
+			}
+			
+			if(alienArray[i].ax<20) {
+				for(int j=0; j<alienArray.length; j++) {
+					alienArray[j].moveRight=true;
+					alienArray[j].moveLeft=false;
+					alienArray[j].ay+=50;
+				}
+			}
+		}
+	}
+	
+	
 
 	public static void main(String[] arg) {
 		Frame f = new Frame();
@@ -144,21 +198,21 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		f.setVisible(true);
 		
 
-		alienArray[0] = new Alien(200, 0);
-		alienArray[1] = new Alien(300, 0);
-		alienArray[2] = new Alien(400, 0);
-		alienArray[3] = new Alien(500, 0);
-		alienArray[4] = new Alien(600, 0);
-		alienArray[5] = new Alien(200, 100);
-		alienArray[6] = new Alien(300, 100);
-		alienArray[7] = new Alien(400, 100);
-		alienArray[8] = new Alien(500, 100);
-		alienArray[9] = new Alien(600, 100);
-		alienArray[10] = new Alien(200, 200);
-		alienArray[11] = new Alien(300, 200);
-		alienArray[12] = new Alien(400, 200);
-		alienArray[13] = new Alien(500, 200);
-		alienArray[14] = new Alien(600, 200);
+		alienArray[0] = new Alien(200, 0, 5);
+		alienArray[1] = new Alien(300, 0, 5);
+		alienArray[2] = new Alien(400, 0, 5);
+		alienArray[3] = new Alien(500, 0, 5);
+		alienArray[4] = new Alien(600, 0, 5);
+		alienArray[5] = new Alien(200, 100, 5);
+		alienArray[6] = new Alien(300, 100, 5);
+		alienArray[7] = new Alien(400, 100, 5);
+		alienArray[8] = new Alien(500, 100, 5);
+		alienArray[9] = new Alien(600, 100, 5);
+		alienArray[10] = new Alien(200, 200, 5);
+		alienArray[11] = new Alien(300, 200, 5);
+		alienArray[12] = new Alien(400, 200, 5);
+		alienArray[13] = new Alien(500, 200, 5);
+		alienArray[14] = new Alien(600, 200, 5);
 
 	}
 

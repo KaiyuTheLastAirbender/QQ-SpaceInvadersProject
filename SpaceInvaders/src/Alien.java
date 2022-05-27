@@ -16,10 +16,16 @@ public class Alien {
 	public int w=45, h=45; 
 	private Rectangle hitbox;
 	public static boolean right = true;
+	public boolean moveLeft, moveRight;
+	public int speed;
 	
-	public Alien(int x, int y) {
+	public Alien(int x, int y, int s) {
 		ax=x;
 		ay=y;
+		speed=s;
+		
+		moveLeft=true;
+		moveRight=false;
 		
 		alien = getImage("imgs/Blue.png");
 		
@@ -84,6 +90,8 @@ public class Alien {
 		}
 		return false;
 	}
+	
+
 	
 	
 	public boolean collision(int x, int y) { //collides with bullet
