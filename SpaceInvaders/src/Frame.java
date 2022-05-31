@@ -10,16 +10,26 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.awt.Graphics2D;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+//COOL GAME pepppa approves
+// loved by peppa
 public class Frame extends JPanel implements ActionListener, MouseListener, KeyListener, MouseMotionListener {
 //	Duck d = new Duck();
 
+	TimeCounter tic = new TimeCounter(900,500);
+	
+	int clock=10;
+	int clockPosX=800; 
+	int second;
+	
 	int score = 0, winscore=15;
 	Background r = new Background();
 	JFrame frame;
@@ -36,6 +46,14 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	ArrayList<Bullet> bullets = new ArrayList<Bullet>();
 	public boolean lostGame = false;
 	private int mx, my;
+	
+	Font font1 = new Font("Arial", Font.PLAIN, 70);	
+	Timer timer;	
+	String ddSecond, ddMinute;	
+	DecimalFormat dFormat = new DecimalFormat("00");
+	JLabel counterLabel;
+	
+
 
 //	Ghostthing w = new Ghostthing();
 //	//Crosshair CH = new Crosshair();
@@ -56,7 +74,38 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 
 	public void paint(Graphics g) {
 		super.paintComponent(g);
+		
+		
+		
 		r.paint(g);
+		
+		
+		tic.paint(g);
+		
+		g.setColor(Color.white);
+		g.setFont(g.getFont().deriveFont(50f));
+		g.drawString(" " + clock, clockPosX, 50);
+		
+		if(tic.y==550) {
+			clock--;
+		}
+		
+		if(clock<=0) {
+			clock=0;
+		}
+		
+		if(clock<=0) {
+			g.setColor(Color.RED);
+			g.setFont(new Font("Stencil", Font.PLAIN, 50));
+			g.drawString("TIME'S UP", 320, 300);
+			
+			for(int i=0; i<15; i++) {
+				alienArray[i].ay=-1000;
+			}
+		}
+		
+		
+		
 		s.paint(g);
 //		x.paint(g); //bullet class is the x
 
@@ -74,6 +123,9 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			a.ax+=a.speed;
 		}
 	
+		
+		
+		
 		if (true || running && !lostGame && score<winscore) {
 			for (int i = 0; i < 15; i++) {
 				alienArray[i].paint(g);
@@ -93,9 +145,9 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 				if (alienArray[i].lost()) {
 					lostGame = true;
 				}
-				g.setColor(Color.RED);
-				g.setFont(new Font("Stencil", Font.PLAIN, 50));
-				g.drawString("SCORE: " + score, 10, 500);
+//				g.setColor(Color.RED);
+//				g.setFont(new Font("Stencil", Font.PLAIN, 50));
+//				g.drawString("SCORE: " + score, 10, 500);
 		
 				
 			}
@@ -103,12 +155,12 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 
 		}
 		
-		else if (lostGame) {	
-			//you lost
-			g.setColor(Color.RED);
-			g.setFont(new Font("TimesRoman", Font.PLAIN, 50));
-			g.drawString("You Lost!", 300, 300);
-		}
+//		else if (lostGame) {	
+//			//you lost
+//			g.setColor(Color.RED);
+//			g.setFont(new Font("TimesRoman", Font.PLAIN, 50));
+//			g.drawString("You Lost!", 300, 300);
+//		}
 		
 		moveAliens();
 
@@ -144,6 +196,48 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 //		
 //		}
 //	}
+	
+//	public void simpleTimer() {
+//		
+//		timer = new Timer(1000, new ActionListener() {
+//			
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				
+//				second++;
+//				
+//				counterLabel.setText(""+ second);
+//			}
+//		});
+//	}
+//
+//	
+//	public void countdownTimer1() {
+//		
+//		timer = new Timer(1000, new ActionListener() {
+//			
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				
+//				second--;
+//				ddSecond = dFormat.format(second);
+//				ddMinute = dFormat.format(minute);	
+//				counterLabel.setText(ddMinute + ":" + ddSecond);
+//				
+//				if(second==-1) {
+//					second = 59;
+//					minute--;
+//					ddSecond = dFormat.format(second);
+//					ddMinute = dFormat.format(minute);	
+//					counterLabel.setText(ddMinute + ":" + ddSecond);
+//				}
+//				if(minute==0 && second==0) {
+//					timer.stop();
+//				}
+//			}
+//		});	
+//		
+//	}		
 	
 	public void moveAliens() {
 		for(int i=0; i<alienArray.length; i++) {
